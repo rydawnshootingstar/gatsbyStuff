@@ -6,6 +6,11 @@
 
 module.exports = {
   /* Your site config here */
+  siteMetadata: {
+    author: "Ryan Feller",
+    title: "Hello 🌎",
+  },
+
   plugins: [
     `gatsby-plugin-styled-components`,
     {

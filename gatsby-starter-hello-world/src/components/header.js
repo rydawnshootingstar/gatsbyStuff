@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "gatsby";
+import { Link, graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import colors from "../styles/colorPalette";
 
@@ -40,12 +40,14 @@ const PageLink = styled(Link)`
   }
 `;
 
-const Header = () => (
-  <HeaderContainer>
-    {pages.map(page => (
-      <PageLink to={page}>{page} |</PageLink>
-    ))}
-  </HeaderContainer>
-);
+const Header = () => {
+  return (
+    <HeaderContainer>
+      {pages.map(page => (
+        <PageLink to={page}>{page} |</PageLink>
+      ))}
+    </HeaderContainer>
+  );
+};
 
 export default Header;
