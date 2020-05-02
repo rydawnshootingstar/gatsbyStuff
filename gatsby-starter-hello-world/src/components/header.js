@@ -3,7 +3,7 @@ import { Link, graphql, useStaticQuery } from "gatsby";
 import styled from "styled-components";
 import colors from "../styles/colorPalette";
 
-const pages = ["/", "about", "contact"];
+const pages = ["/", "about", "blog", "contact"];
 
 const HeaderContainer = styled.div`
   display: flex;
