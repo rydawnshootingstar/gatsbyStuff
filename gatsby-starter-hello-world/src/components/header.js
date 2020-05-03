@@ -43,8 +43,10 @@ const PageLink = styled(Link)`
 const Header = () => {
   return (
     <HeaderContainer>
-      {pages.map(page => (
-        <PageLink to={page}>{page} |</PageLink>
+      {pages.map((page, index) => (
+        <PageLink key={index} to={page}>
+          {page} |
+        </PageLink>
       ))}
     </HeaderContainer>
   );

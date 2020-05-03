@@ -1,7 +1,8 @@
 import React from "react";
 import ThreePartGrid from "../components/layouts/3partGrid";
 import styled from "styled-components";
-import { qraphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery, Link } from "gatsby";
+import colors from "../styles/colorPalette";
 
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
@@ -12,10 +13,14 @@ const BlogPage = () => {
             frontmatter {
               title
               date
+              summary
             }
 
             html
             excerpt
+            fields {
+              slug
+            }
           }
         }
       }
@@ -26,13 +31,20 @@ const BlogPage = () => {
     margin: 0px auto;
     margin-top: 50px;
     padding: 10px;
-    max-width: 900px;
+    max-width: 1050px;
+    background-color: rgba(197, 194, 212, 0.1);
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
     h1 {
       font-weight: 800;
       margin: 2px;
       font-size: 40px;
       text-align: center;
+      cursor: pointer;
     }
     h3 {
       font-size: 20px;
@@ -46,7 +58,6 @@ const BlogPage = () => {
     }
     .ReadMore {
       cursor: pointer;
-
       :hover {
         text-decoration: underline;
         opacity: 20%;
@@ -58,15 +69,23 @@ const BlogPage = () => {
     <ThreePartGrid>
       <div>
         <h1>Blog Posts</h1>
-        {data.allMarkdownRemark.edges.map(({ node }) => (
-          <DataNode>
+        {data.allMarkdownRemark.edges.map(({ node }, index) => (
+          <DataNode key={index}>
             <span>
               <h3>{node.frontmatter.date}</h3>
-              <h1>{node.frontmatter.title}</h1>
+              <h1>
+                <Link to={`/blog/${node.fields.slug}`}>
+                  {node.frontmatter.title}
+                </Link>
+              </h1>
             </span>
 
-            <p>{node.excerpt}</p>
-            <span className={"ReadMore"}>Read More</span>
+            {/* <p>{node.excerpt}</p> */}
+            <p>{node.frontmatter.summary}</p>
+
+            <Link to={`/blog/${node.fields.slug}`}>
+              <span className={"ReadMore"}>Read More...</span>
+            </Link>
           </DataNode>
         ))}
       </div>

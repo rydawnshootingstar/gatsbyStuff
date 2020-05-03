@@ -13,6 +13,7 @@ module.exports = {
 
   plugins: [
     `gatsby-plugin-styled-components`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
@@ -26,7 +27,18 @@ module.exports = {
         gfm: true,
         path: `${__dirname}/src/posts/`,
         // Plugins configs
-        plugins: [],
+        plugins: [
+          "gatsby-remark-relative-images",
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 750,
+              linkImagesToOriginal: false,
+              wrapperStyle: fluidResult =>
+                `flex:${_.round(fluidResult.aspectRatio, 2)};`,
+            },
+          },
+        ],
       },
     },
     // delivers our own font files

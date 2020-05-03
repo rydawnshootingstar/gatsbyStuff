@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   max-width: 100%;
   display: grid;
   color: ${colors.text};
-  grid-template-rows: 1fr 5fr 1fr;
+  grid-template-rows: 250px 5fr 250px;
   background: ${colors.secondary};
   font-family: "Merriweather";
 `;

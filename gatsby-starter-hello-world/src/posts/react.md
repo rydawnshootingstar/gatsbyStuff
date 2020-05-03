@@ -1,6 +1,7 @@
 ---
 title: "React Rules"
 date: "4/23/2020"
+summary: "You know react rules, dude"
 ---
 
 ## React

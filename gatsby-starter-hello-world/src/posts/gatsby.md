@@ -1,7 +1,10 @@
 ---
 title: "Gatsby Experimentation"
 date: "4/24/2020"
+summary: "Getting used to some of Gatsby's features"
 ---
+
+![surfin granny](./granny.jpg)
 
 ## Gatsby
 
