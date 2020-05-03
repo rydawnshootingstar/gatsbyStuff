@@ -7,7 +7,22 @@ import colors from "../styles/colorPalette";
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark {
+      allContentfulBlogPost(sort: { fields: publishedDate, order: DESC }) {
+        edges {
+          node {
+            title
+            slug
+            publishedDate(formatString: "MMMM Do, YYYY")
+            published: publishedDate(fromNow: true)
+            summary
+          }
+        }
+      }
+    }
+  `);
+
+  /*
+allMarkdownRemark {
         edges {
           node {
             frontmatter {
@@ -24,8 +39,7 @@ const BlogPage = () => {
           }
         }
       }
-    }
-  `);
+  */
 
   const DataNode = styled.div`
     margin: 0px auto;
@@ -69,21 +83,19 @@ const BlogPage = () => {
     <ThreePartGrid>
       <div>
         <h1>Blog Posts</h1>
-        {data.allMarkdownRemark.edges.map(({ node }, index) => (
+        {data.allContentfulBlogPost.edges.map(({ node }, index) => (
           <DataNode key={index}>
             <span>
-              <h3>{node.frontmatter.date}</h3>
+              <h3>{node.publishedDate}</h3>
               <h1>
-                <Link to={`/blog/${node.fields.slug}`}>
-                  {node.frontmatter.title}
-                </Link>
+                <Link to={`/blog/${node.slug}`}>{node.title}</Link>
               </h1>
             </span>
 
             {/* <p>{node.excerpt}</p> */}
-            <p>{node.frontmatter.summary}</p>
+            <p>{node.summary}</p>
 
-            <Link to={`/blog/${node.fields.slug}`}>
+            <Link to={`/blog/${node.slug}`}>
               <span className={"ReadMore"}>Read More...</span>
             </Link>
           </DataNode>
