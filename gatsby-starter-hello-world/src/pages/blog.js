@@ -88,7 +88,7 @@ allMarkdownRemark {
   `;
 
   return (
-    <ThreePartGrid>
+    <ThreePartGrid title={"blog"}>
       <BlogContainer>
         <h1>Blog Posts</h1>
         {data.allContentfulBlogPost.edges.map(({ node }, index) => (

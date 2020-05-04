@@ -12,7 +12,7 @@ const FourOhFour = styled.div`
 `;
 
 const NotFound = () => (
-  <ThreePartGrid>
+  <ThreePartGrid title={"404"}>
     <FourOhFour>
       <h1>Page Not Found</h1>
     </FourOhFour>

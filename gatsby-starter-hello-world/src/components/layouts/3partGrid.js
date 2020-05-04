@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../header";
 import Footer from "../footer";
 import Wrapper from "../wrapper";
+import Head from "../../components/head";
 import "../../styles/index.css";
 
 /*
@@ -22,6 +23,7 @@ const Body = styled.span`
 
 const ThreePartGrid = props => (
   <Wrapper>
+    <Head title={props.title} />
     <Header />
     <Body>{props.children}</Body>
     <Footer />

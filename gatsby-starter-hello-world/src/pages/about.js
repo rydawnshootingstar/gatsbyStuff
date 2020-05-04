@@ -2,7 +2,7 @@ import React from "react";
 import ThreePartGrid from "../components/layouts/3partGrid";
 
 const AboutPage = () => (
-  <ThreePartGrid>
+  <ThreePartGrid title={"about"}>
     <div>
       <h1>About Me</h1>
       <p>

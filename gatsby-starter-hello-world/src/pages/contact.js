@@ -1,7 +1,7 @@
 import React from "react";
 import ThreePartGrid from "../components/layouts/3partGrid";
 const ContactPage = () => (
-  <ThreePartGrid>
+  <ThreePartGrid title={"contact"}>
     <div>
       <h1>Contact Us</h1>
       <p>
