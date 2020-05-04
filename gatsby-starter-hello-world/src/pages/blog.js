@@ -41,9 +41,17 @@ allMarkdownRemark {
       }
   */
 
+  const BlogContainer = styled.div`
+    margin-bottom: 100px;
+    h1 {
+      font-size: 50px;
+    }
+  `;
+
   const DataNode = styled.div`
     margin: 0px auto;
     margin-top: 50px;
+    margin-bottom: 50px;
     padding: 10px;
     max-width: 1050px;
     background-color: rgba(197, 194, 212, 0.1);
@@ -56,7 +64,7 @@ allMarkdownRemark {
     h1 {
       font-weight: 800;
       margin: 2px;
-      font-size: 40px;
+      font-size: 33px;
       text-align: center;
       cursor: pointer;
     }
@@ -80,19 +88,18 @@ allMarkdownRemark {
   `;
 
   return (
-    <ThreePartGrid>
-      <div>
+    <ThreePartGrid title={"blog"}>
+      <BlogContainer>
         <h1>Blog Posts</h1>
         {data.allContentfulBlogPost.edges.map(({ node }, index) => (
           <DataNode key={index}>
             <span>
-              <h3>{node.publishedDate}</h3>
               <h1>
                 <Link to={`/blog/${node.slug}`}>{node.title}</Link>
               </h1>
+              <h3>{node.publishedDate}</h3>
             </span>
 
-            {/* <p>{node.excerpt}</p> */}
             <p>{node.summary}</p>
 
             <Link to={`/blog/${node.slug}`}>
@@ -100,7 +107,7 @@ allMarkdownRemark {
             </Link>
           </DataNode>
         ))}
-      </div>
+      </BlogContainer>
     </ThreePartGrid>
   );
 };

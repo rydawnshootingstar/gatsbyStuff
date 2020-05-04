@@ -3,19 +3,19 @@
 // we wanna generate a slug field for each blog post, which will have the internal type of MarkdownRemark
 const path = require("path");
 
-module.exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions;
+// module.exports.onCreateNode = ({ node, actions }) => {
+//   const { createNodeField } = actions;
 
-  if (node.internal.type === "MarkdownRemark") {
-    //console.log(JSON.stringify(node, undefined, 2));
-    const slug = path.basename(node.fileAbsolutePath, ".md");
-    createNodeField({
-      node,
-      name: "slug",
-      value: slug,
-    });
-  }
-};
+//   if (node.internal.type === "MarkdownRemark") {
+//     //console.log(JSON.stringify(node, undefined, 2));
+//     const slug = path.basename(node.fileAbsolutePath, ".md");
+//     createNodeField({
+//       node,
+//       name: "slug",
+//       value: slug,
+//     });
+//   }
+// };
 
 // creates new pages on server startup
 // NOTE: different graphql implementation than in our components. calls return a promise
@@ -26,24 +26,22 @@ module.exports.createPages = async ({ graphql, actions }) => {
 
   const res = await graphql(`
     query {
-      allMarkdownRemark {
+      allContentfulBlogPost {
         edges {
           node {
-            fields {
-              slug
-            }
+            slug
           }
         }
       }
     }
   `);
 
-  res.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  res.data.allContentfulBlogPost.edges.forEach(({ node }) => {
     createPage({
       component: blogTemplate,
-      path: `/blog/${node.fields.slug}`,
+      path: `/blog/${node.slug}`,
       context: {
-        slug: node.fields.slug,
+        slug: node.slug,
       },
     });
   });
