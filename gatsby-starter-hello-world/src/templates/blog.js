@@ -51,7 +51,6 @@ class Blog extends React.Component {
   };
 
   render() {
-    console.log("blog data: ", this.props.data);
     return (
       <ThreePartGrid title={this.props.data.contentfulBlogPost.title}>
         <BlogPost>
